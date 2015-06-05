@@ -388,11 +388,11 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
 
   Returns json data about the graph in a 15 minutes span.
 
-  ######HTTP REQUEST
+######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/network/expo/graph`
+`GET http://api.citysensing.org/v1/network/expo/graph`
 
-  ######QUERY PARAMETERS
+######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
