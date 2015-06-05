@@ -1,8 +1,8 @@
 #citysensing 2.0 API PROPOSAL (static files)
 
 ###Time framing
-8 daily updates, 1 per 3 hour span.
-For each 3 hour span data is aggregated every 15 minutes.
+1 daily update.
+For each 24 hours span data is aggregated every 15 minutes.
 
 **Geograpic view**
 ----
@@ -21,7 +21,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1433314800000`|start date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -41,7 +41,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 ---
 ####Calls timeline
 
-  Returns json data about the amount of calls in a 3 hour span.
+Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
@@ -51,7 +51,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1433314800000`|start date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -89,7 +89,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 {
   'startDate':1433314800000,
   'endDate':1433315700000,
-  'timeline':
+  'cells':
     [
       { 'cellId' : 1, 'value' : 0.0 },
       { 'cellId' : 2, 'value' : 0.4 },
@@ -119,7 +119,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 {
   'startDate':1433314800000,
   'endDate':1433315700000,
-  'timeline':
+  'cells':
     [
       { 'cellId' : 1, 'value' : 0.0 },
       { 'cellId' : 2, 'value' : 0.4 },
@@ -162,13 +162,13 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 ---
 ####Social activity timeline
 
-  Returns json data about the amount of tweets (and/or other sources) in a 3 hour span.
+  Returns json data about the amount of tweets (and/or other sources) in a 24 hour span.
 
-  ######HTTP REQUEST
+######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/social_activity/timeline`
+`GET http://api.citysensing.org/v1/geo/expo/social_activity/timeline`
 
-  ######QUERY PARAMETERS
+######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
@@ -190,19 +190,19 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 }
 ```
 ---
-####Checkins timeline
+####Instagram timeline
 
-  Returns json data about the amount of checkins in a 3 hour span related to the EXPO venues.
+  Returns json data about the amount of photos in a 24 hours span related to the EXPO venues.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/checkins/timeline`
+  `GET http://api.citysensing.org/v1/geo/expo/photos/timeline`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1433314800000`|start date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -232,7 +232,7 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1433314800000`|start date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -250,19 +250,19 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 }
 ```
 ---
-####Checkins Activity
+####Instagram Activity
 
-  Returns json data about checkins inside the Expo venues in a 15 minutes span.
+Returns json data about photos inside the Expo venues in a 15 minutes span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/checkins/venues`
+  `GET http://api.citysensing.org/v1/geo/expo/photos/palces`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1433314800000`|start date of the 15m span
 
 ######SUCCESS RESPONSE:
 
@@ -272,9 +272,9 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
   'endDate':1433322000000,
   'posts':
     [
-      { 'venueId' : 29384, 'value' : 20, 'venueName' : 'Padiglione Italia' },
-      { 'venueId' : 94382, 'value' : 520, 'venueName' : 'Decumano' },
-      { 'venueId' : 10388, 'value' : 59, 'venueName' : 'Cluster mediterraneo' },
+      { 'placeId' : 29384, 'value' : 20, 'placeName' : 'Padiglione Italia' },
+      { 'placeId' : 94382, 'value' : 520, 'palceName' : 'Decumano' },
+      { 'placeId' : 10388, 'value' : 59, 'placeName' : 'Cluster mediterraneo' },
       ....
     ]
 }
@@ -302,9 +302,9 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
   'endDate':1433315700000,
   'totPosts': 2346,
   'topSocialVenue': 'Padiglione Italia',
-  'topCheckins': 2382,
-  'topCheckinsVenueId': 37374,
-  'topCheckinsVenueName': 'Decumano',
+  'topPhotoss': 2382,
+  'topPhotosPlaceId': 37374,
+  'topPhotosPlaceName': 'Decumano',
 }
 ```
 ---
@@ -336,9 +336,9 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
   'endDate':1433322000000,
   'nodes':
     [
-      { 'name' : 'expo', 'type' : 'cluster' },
-      { 'name' : '#food', 'type' : 'entity' },
-      { 'name' : '@secolourbano', 'type' : 'user' },
+      { 'name' : 'expo', 'type' : 'cluster', value: 20 },
+      { 'name' : '#food', 'type' : 'entity', value:2 },
+      { 'name' : 'coop', 'type' : 'entity', value:15 },
       ...
     ],
   'links':
@@ -406,9 +406,9 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
   'endDate':1433322000000,
   'nodes':
     [
-      { 'name' : 'expo', 'type' : 'cluster' },
-      { 'name' : '#food', 'type' : 'entity' },
-      { 'name' : '@secolourbano', 'type' : 'user' },
+      { 'name' : 'expo', 'type' : 'cluster', value: 20 },
+      { 'name' : '#food', 'type' : 'entity', value:2 },
+      { 'name' : 'coop', 'type' : 'entity', value:15 },
       ...
     ],
   'links':
