@@ -301,7 +301,8 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
   'startDate':1433314800000,
   'endDate':1433315700000,
   'totPosts': 2346,
-  'topSocialVenue': 'Padiglione Italia'
+  'topSocialVenue': 'Padiglione Italia',
+  'topSocialVenueId': 34
 }
 ```
 ---
