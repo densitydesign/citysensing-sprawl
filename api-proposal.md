@@ -301,10 +301,7 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
   'startDate':1433314800000,
   'endDate':1433315700000,
   'totPosts': 2346,
-  'topSocialVenue': 'Padiglione Italia',
-  'topPhotoss': 2382,
-  'topPhotosPlaceId': 37374,
-  'topPhotosPlaceName': 'Decumano',
+  'topSocialVenue': 'Padiglione Italia'
 }
 ```
 ---
