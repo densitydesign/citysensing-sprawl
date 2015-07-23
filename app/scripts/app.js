@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/network', {
+        templateUrl: 'views/network.html',
+        controller: 'NetworkCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

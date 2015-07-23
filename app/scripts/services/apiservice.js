@@ -112,6 +112,22 @@ angular.module('cssprawlApp')
            });
 
            return deferred.promise;
-         }
+         },
+      getCityNetworkGraph : function(params){
+        var serviceUrl = 'network/city/graph';
+        var deferred = $q.defer();
+        $http({
+          method: 'GET',
+          url : baseUrl + serviceUrl,
+          params : params
+        }).success(function(data){
+          deferred.resolve(data);
+        }).error(function(){
+          deferred.reject("An error occured while fetching file");
+        });
+
+        return deferred.promise;
+      }
     };
+
   });
