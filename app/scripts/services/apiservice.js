@@ -8,7 +8,7 @@
  * Factory in the cssprawlApp.
  */
 angular.module('cssprawlApp')
-  .factory('apiservice', function () {
+  .factory('apiservice', function ($q,$http) {
 
     var baseUrl = 'http://www.streamreasoning.com/citysensing/api/';
 
@@ -127,7 +127,21 @@ angular.module('cssprawlApp')
         });
 
         return deferred.promise;
+      },
+      getCityNetworkUsers : function(params){
+        var serviceUrl = 'network/city/users';
+        var deferred = $q.defer();
+        $http({
+          method: 'GET',
+          url : baseUrl + serviceUrl,
+          params : params
+        }).success(function(data){
+          deferred.resolve(data);
+        }).error(function(){
+          deferred.reject("An error occured while fetching file");
+        });
+
+        return deferred.promise;
       }
     };
-
   });

@@ -1,3 +1,40 @@
+/* @font-face */
+@font-face {
+  font-family: 'clear_sansregular';
+  src: url('fonts/ClearSans-Regular-webfont.eot');
+  src: url('fonts/ClearSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/ClearSans-Regular-webfont.woff') format('woff'),
+  url('fonts/ClearSans-Regular-webfont.ttf') format('truetype'),
+  url('fonts/ClearSans-Regular-webfont.svg#clear_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'clear_sans_lightregular';
+  src: url('fonts/ClearSans-Light-webfont.eot');
+  src: url('fonts/ClearSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/ClearSans-Light-webfont.woff') format('woff'),
+  url('fonts/ClearSans-Light-webfont.ttf') format('truetype'),
+  url('fonts/ClearSans-Light-webfont.svg#clear_sans_lightregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'clear_sansbold';
+  src: url('fonts/ClearSans-Bold-webfont.eot');
+  src: url('fonts/ClearSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/ClearSans-Bold-webfont.woff') format('woff'),
+  url('fonts/ClearSans-Bold-webfont.ttf') format('truetype'),
+  url('fonts/ClearSans-Bold-webfont.svg#clear_sansbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -9,14 +46,64 @@ body {
   padding: 0;
   background-color:black;
   color:white;
+  font-family:"clear_sansregular";
 }
 
 
 .view{
   width:80%;
   height:100vh;
+  float:left;
 }
-.panel{
+.info-panel{
   width:20%;
+  font-size:1.1em;
   height:100vh;
+  float:left;
+  background-color:#1A1A1A;
+  padding:30px;
+  line-height:1.6em;
+}
+.txt-info{
+  font-family:"clear_sansbold";
+}
+
+.txt-info.title {
+  color:#aaa;
+}
+.txt-info.highlight{
+  color:#0EA789;
+}
+.viz{
+  width:100%;
+  height:100%;
+}
+
+/*network style*/
+
+.link {
+  stroke: #0EA789;
+}
+
+.node text {
+  stroke:#fff;
+}
+
+.node circle{
+  stroke:#0EA789;
+  stroke-width:1;
+  stroke-opacity:0.5;
+  fill:black;
+}
+svg text{
+  font-family:"clear_sansregular";
+}
+.top-user {
+  height:60px;
+  margin-top:15px;
+}
+.top-user img{
+  height:100%;
+  width:auto;
+  border-radius:100%;
 }
