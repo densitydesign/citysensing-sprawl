@@ -53,7 +53,15 @@
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/topojson/topojson.js"></script>
     <script src="bower_components/d3-tile/index.js"></script>
+    <script src="bower_components/turf/turf.min.js"></script>
     <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) lib/cssprawl.js -->
+    <script src="lib/map.js"></script>
+    <script src="lib/citypixel.js"></script>
+    <script src="lib/mask.js"></script>
+    <script src="lib/tweets.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -64,6 +72,8 @@
         <script src="scripts/controllers/network.js"></script>
         <script src="scripts/directives/citynetwork.js"></script>
         <script src="scripts/directives/topnet.js"></script>
+        <script src="scripts/controllers/geocity.js"></script>
+        <script src="scripts/directives/citymap.js"></script>
         <!-- endbuild -->
 </body>
 </html>

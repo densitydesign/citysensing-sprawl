@@ -31,6 +31,15 @@ angular
         templateUrl: 'views/network.html',
         controller: 'NetworkCtrl'
       })
+      .when('/geocity', {
+        templateUrl: 'views/geocity.html',
+        controller: 'GeocityCtrl',
+        resolve:{
+          grid : function (apiservice) {
+            return apiservice.getFile('data/grid_milan_topo.json')
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
