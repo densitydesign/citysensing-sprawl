@@ -8,23 +8,25 @@
  * Controller of the cssprawlApp
  */
 angular.module('cssprawlApp')
-  .controller('NetworkCtrl', function ($scope, apiservice,$rootScope) {
+  .controller('NetworkCtrl', function ($scope, apiservice,$rootScope,$timeout) {
 
 
 //get the data!
     $scope.getNetData = function(date) {
-      var params = {startDate:date.getTime() / 1000};
+      var endDate = d3.time.minute.offset(date,15);
+      var params = {startDate:date.getTime(),endDate:endDate.getTime()};
       apiservice.getCityNetworkGraph(params).then(function(d){
         $scope.netData = d;
-        console.log($scope.netData);
+
       })
     };
 
     $scope.getTopData = function(date) {
-      var params = {startDate:date.getTime() / 1000};
+      var endDate = d3.time.minute.offset(date,15);
+      var params = {startDate:date.getTime(),endDate:endDate.getTime()};
       apiservice.getCityNetworkUsers(params).then(function(d){
         $scope.topData = d;
-        console.log($scope.topData);
+        $timeout(function() {$scope.start = endDate; $scope.getTopData(endDate); $scope.getNetData(endDate)},10000);
       })
     };
 
