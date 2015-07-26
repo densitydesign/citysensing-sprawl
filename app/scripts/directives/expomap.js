@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name cssprawlApp.directive:geomap
+ * @name cssprawlApp.directive:expomap
  * @description
- * # geomap
+ * # expomap
  */
 angular.module('cssprawlApp')
-  .directive('geomap', function ($timeout) {
+  .directive('expomap', function ($timeout) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {

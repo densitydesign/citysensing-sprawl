@@ -85,6 +85,10 @@
                       .attr("class", "stack")
                       .attr("opacity", function(d,i){return i > 0 ? 0.5 : 0.9})
 
+        stacked.transition()
+          .duration(duration)
+          .attr("d", function(d) { return area(d.values); })
+
         stacked.append("path")
           .attr("class", "area")
           .attr("d", function(d) { return area(d.values); })
@@ -169,6 +173,8 @@
               .attr("class", "y axis")
               .attr("transform", "translate(" + chartWidth + ",0)")
               .call(yAxis);
+        }else{
+          chart.select("g.y.axis").call(yAxis)
         }
 
       }); //end selection

@@ -123,7 +123,11 @@ angular.module('cssprawlApp')
             chartTweet.datum(circleActive).call(tweet)
 
             $timeout(function() {
-              scope.startDate =  d3.time.minute.offset(scope.startDate,15);
+              var nextDate = d3.time.minute.offset(scope.startDate,15);
+              if(scope.startDate.getDay() != nextDate.getDay()){
+                  scope.getTimeSocialData(nextDate)
+              }
+              scope.startDate = nextDate;
               scope.getSocialData(scope.startDate);
               scope.getAnomalyData(scope.startDate);
               scope.getStats(scope.startDate);
