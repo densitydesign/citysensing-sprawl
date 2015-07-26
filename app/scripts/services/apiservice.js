@@ -99,7 +99,7 @@ angular.module('cssprawlApp')
           return deferred.promise;
         },
         getGeoExpoSocialActivityTimeline : function(params){
-           var serviceUrl = 'geo/expo/social_activity/timeline';
+           var serviceUrl = 'geo/expo/twitter/timeline';
            var deferred = $q.defer();
            $http({
              method: 'GET',
@@ -112,36 +112,96 @@ angular.module('cssprawlApp')
            });
 
            return deferred.promise;
-         },
-      getCityNetworkGraph : function(params){
-        var serviceUrl = 'network/city/graph';
-        var deferred = $q.defer();
-        $http({
-          method: 'GET',
-          url : baseUrl + serviceUrl,
-          params : params
-        }).success(function(data){
-          deferred.resolve(data);
-        }).error(function(){
-          deferred.reject("An error occured while fetching file");
-        });
+            },
+        getGeoExpoInstagramTimeline : function(params){
+            var serviceUrl = 'geo/expo/instagram/timeline';
+            var deferred = $q.defer();
+            $http({
+              method: 'GET',
+              url : baseUrl + serviceUrl,
+              params : params
+            }).success(function(data){
+              deferred.resolve(data);
+            }).error(function(){
+              deferred.reject("An error occured while fetching file");
+            });
 
-        return deferred.promise;
-      },
-      getCityNetworkUsers : function(params){
-        var serviceUrl = 'network/city/users';
-        var deferred = $q.defer();
-        $http({
-          method: 'GET',
-          url : baseUrl + serviceUrl,
-          params : params
-        }).success(function(data){
-          deferred.resolve(data);
-        }).error(function(){
-          deferred.reject("An error occured while fetching file");
-        });
+            return deferred.promise;
+          },
+        getGeoExpoSocialActivityPosts : function(params){
+            var serviceUrl = 'geo/expo/social_activity/geo';
+            var deferred = $q.defer();
+            $http({
+              method: 'GET',
+              url : baseUrl + serviceUrl,
+              params : params
+            }).success(function(data){
+              deferred.resolve(data);
+            }).error(function(){
+              deferred.reject("An error occured while fetching file");
+            });
 
-        return deferred.promise;
-      }
+            return deferred.promise;
+          },
+        getGeoExpoPavillionsActivity : function(params){
+            var serviceUrl = 'geo/expo/social_activity/text';
+            var deferred = $q.defer();
+            $http({
+              method: 'GET',
+              url : baseUrl + serviceUrl,
+              params : params
+            }).success(function(data){
+              deferred.resolve(data);
+            }).error(function(){
+              deferred.reject("An error occured while fetching file");
+            });
+
+            return deferred.promise;
+          },
+        getGeoExpoGeneralStats : function(params){
+            var serviceUrl = 'geo/expo/general_stats';
+            var deferred = $q.defer();
+            $http({
+              method: 'GET',
+              url : baseUrl + serviceUrl,
+              params : params
+            }).success(function(data){
+              deferred.resolve(data);
+            }).error(function(){
+              deferred.reject("An error occured while fetching file");
+            });
+
+            return deferred.promise;
+          },
+        getCityNetworkGraph : function(params){
+          var serviceUrl = 'network/city/graph';
+          var deferred = $q.defer();
+          $http({
+            method: 'GET',
+            url : baseUrl + serviceUrl,
+            params : params
+          }).success(function(data){
+            deferred.resolve(data);
+          }).error(function(){
+            deferred.reject("An error occured while fetching file");
+          });
+
+          return deferred.promise;
+        },
+        getCityNetworkUsers : function(params){
+          var serviceUrl = 'network/city/users';
+          var deferred = $q.defer();
+          $http({
+            method: 'GET',
+            url : baseUrl + serviceUrl,
+            params : params
+          }).success(function(data){
+            deferred.resolve(data);
+          }).error(function(){
+            deferred.reject("An error occured while fetching file");
+          });
+
+          return deferred.promise;
+        }
     };
   });

@@ -40,6 +40,15 @@ angular
           }
         }
       })
+      .when('/geoexpo', {
+        templateUrl: 'views/geoexpo.html',
+        controller: 'GeoexpoCtrl',
+        resolve:{
+          pavillions : function (apiservice) {
+            return apiservice.getFile('data/expoarea_topo.json')
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
