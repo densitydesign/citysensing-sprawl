@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
-    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+    <!-- <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' /> -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="cssprawlApp">
+  <body ng-app="cssprawlApp" class="fullheight">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
-    <div ng-view=""></div>
+    <div class="fullheight" ng-view=""></div>
 
 
 
@@ -62,6 +62,7 @@
     <script src="lib/citypixel.js"></script>
     <script src="lib/mask.js"></script>
     <script src="lib/tweets.js"></script>
+    <script src="lib/stackedarea.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -74,6 +75,8 @@
         <script src="scripts/directives/topnet.js"></script>
         <script src="scripts/controllers/geocity.js"></script>
         <script src="scripts/directives/citymap.js"></script>
+        <script src="scripts/directives/timelinetweets.js"></script>
+        <script src="scripts/directives/timelinecalls.js"></script>
         <!-- endbuild -->
 </body>
 </html>

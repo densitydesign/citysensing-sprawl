@@ -15,13 +15,14 @@ Returns json data about the amount of tweets (and/or other sources) in a 3 hour 
 
 ######HTTP REQUEST
 
-`GET http://api.citysensing.org/v1/geo/city/social_activity/timeline`
+`GET http://www.streamreasoning.org/citysensing/api/geo/city/social_activity/timeline`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 24h span
+|startDate|int (millisec)|`1430431200000`|start date of the 24h span
+|endDate|int (millisec)|`1446332399000`|end date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -45,13 +46,14 @@ Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/city/calls/timeline`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/city/calls/timeline`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 24h span
+|startDate|int (millisec)|`1430431200000`|start date of the 24h span
+|endDate|int (millisec)|`1446332399000`|end date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -75,13 +77,14 @@ Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/city/social_activity/cells`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/city/social_activity/cells`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15 minute span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -105,13 +108,14 @@ Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/city/calls_anomaly/cells`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/city/calls_anomaly/cells`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15 minute span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -135,13 +139,14 @@ Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/city/general_stats`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/city/general_stats`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15 minute span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -152,7 +157,8 @@ Returns json data about the amount of calls in a 24 hour span.
   'totPosts': 2346,
   'topSocialNil': 'Duomo',
   'topSocialCellId': 2,
-  'topAnomalyNil': 'Lambrate'
+  'topAnomalyNil': 'Lambrate',
+  'topAnomalyCellId': 56
 }
 ```
 ---
@@ -162,17 +168,18 @@ Returns json data about the amount of calls in a 24 hour span.
 ---
 ####Social activity timeline
 
-  Returns json data about the amount of tweets (and/or other sources) in a 24 hour span.
+  Returns json data about the amount of tweets in a 24 hour span.
 
 ######HTTP REQUEST
 
-`GET http://api.citysensing.org/v1/geo/expo/social_activity/timeline`
+`GET http://www.streamreasoning.org/citysensing/api/geo/expo/twitter/timeline`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 3h span
+|startDate|int (millisec)|`1430431200000`|start date of the 24h span
+|endDate|int (millisec)|`1446332399000`|end date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -192,17 +199,18 @@ Returns json data about the amount of calls in a 24 hour span.
 ---
 ####Instagram timeline
 
-  Returns json data about the amount of photos in a 24 hours span related to the EXPO venues.
+  Returns json data about the amount of instagram photos in a 24 hours span related to the EXPO venues.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/photos/timeline`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/expo/instagram/timeline`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 24h span
+|startDate|int (millisec)|`1430431200000`|start date of the 24h span
+|endDate|int (millisec)|`1446332399000`|end date of the 24h span
 
 ######SUCCESS RESPONSE:
 
@@ -226,13 +234,14 @@ Returns json data about the amount of calls in a 24 hour span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/social_activity/posts`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/expo/social_activity/geo`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 24h span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minuts span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -252,17 +261,18 @@ Returns json data about the amount of calls in a 24 hour span.
 ---
 ####Instagram Activity
 
-Returns json data about photos inside the Expo venues in a 15 minutes span.
+Returns json data about tweets (or other sources) that calls about Expo venues in a 15 minutes span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/photos/palces`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/expo/social_activity/text`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15m span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -286,13 +296,14 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
 
 ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/geo/expo/general_stats`
+  `GET http://www.streamreasoning.org/citysensing/api/geo/expo/general_stats`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15 minute span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -318,13 +329,14 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
 
   ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/network/city/graph`
+  `GET http://www.streamreasoning.org/citysensing/api/network/city/graph`
 
   ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15m span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -355,13 +367,14 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
 
   ######HTTP REQUEST
 
-  `GET http://api.citysensing.org/v1/network/city/users`
+  `GET http://www.streamreasoning.org/citysensing/api/network/city/users`
 
   ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15m span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -388,13 +401,14 @@ Returns json data about photos inside the Expo venues in a 15 minutes span.
 
 ######HTTP REQUEST
 
-`GET http://api.citysensing.org/v1/network/expo/graph`
+`GET http://www.streamreasoning.org/citysensing/api/network/expo/graph`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15m span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 
@@ -425,13 +439,14 @@ Returns json data about the top users in a 15 minutes span.
 
 ######HTTP REQUEST
 
-`GET http://api.citysensing.org/v1/network/expo/users`
+`GET http://www.streamreasoning.org/citysensing/api/network/expo/users`
 
 ######QUERY PARAMETERS
 
 |Parameter|Type|Default|Description|
 |---|---|---|---|
-|startDate|int (millisec)|`1433314800000`|start date of the 15m span
+|startDate|int (millisec)|`1430431200000`|start date of the 15 minutes span
+|endDate|int (millisec)|`1446332399000`|end date of the 15 minutes span
 
 ######SUCCESS RESPONSE:
 

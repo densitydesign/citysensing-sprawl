@@ -43,6 +43,8 @@
           .transition()
           .duration(duration)
           .attr("fill-opacity", function(d){return scaleOpacity(d.properties.anomaly)})
+          .filter(function(d){return d.properties.id == 'inactive'})
+          .attr("d", path)
 
         citypixels
           .enter().append("path")
@@ -55,6 +57,12 @@
           .attr("fill-opacity", function(d){
               return scaleOpacity(d.properties.anomaly);
           })
+
+        citypixels.exit()
+          .transition()
+          .duration(duration)
+          .attr("fill-opacity", 0)
+          .remove()
 
       }); //end selection
     } // end citypixel

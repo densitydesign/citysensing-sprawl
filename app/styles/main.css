@@ -42,32 +42,41 @@
   padding: 0.2em 0;
 }
 
-body {
+body, html{
+  margin: 0;
   padding: 0;
+}
+body {
   background-color:black;
   color:white;
   font-family:"clear_sansregular";
 }
 
-
-.view{
+.viz-panel{
   width:80%;
-  height:100vh;
-  float:left;
+}
+
+.info-panel{
+  width:20%;
+  font-size:1.1em;
+  background-color:#1A1A1A;
+  line-height:1.6em;
 }
 
 .fullheight{
   height:100vh;
 }
 
-.info-panel{
-  width:20%;
-  font-size:1.1em;
-  height:100vh;
+.push-left{
   float:left;
-  background-color:#1A1A1A;
-  padding:30px;
-  line-height:1.6em;
+}
+
+.push-right{
+  float:right;
+}
+
+.panel-txt{
+    padding:15px;
 }
 .txt-info{
   font-family:"clear_sansbold";
@@ -111,4 +120,27 @@ svg text{
   height:100%;
   width:auto;
   border-radius:100%;
+}
+
+/* timelines */
+#timeline-tweets, #timeline-calls{
+  height: 150px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  stroke-width:1px;
+  shape-rendering: crispEdges;
+}
+
+.axis text, .timeline-legend{
+  fill: white;
+  font-family: "clear_sans_lightregular", sans-serif;
+  font-size: 0.8em;
+}
+
+.y path, .y line{
+  display: none;
 }

@@ -7,7 +7,7 @@
  * # citymap
  */
 angular.module('cssprawlApp')
-  .directive('citymap', function () {
+  .directive('citymap', function ($timeout) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -19,12 +19,10 @@ angular.module('cssprawlApp')
             projection = d3.geo.mercator(),
             path = d3.geo.path().projection(projection),
             b = path.bounds(grid),
-            s = 100 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            s = 100 / Math.max((b[1][0] - b[0][0]) / (width+300), (b[1][1] - b[0][1]) / (height+300)),
             t = [width/ 2, height / 2];
 
-        s = s+50000; //to be fixed
         projection.scale(s).translate(t).center([9.1733, 45.4597])
-
 
         var map = cssprawl.map()
                     .width(width)
@@ -59,11 +57,14 @@ angular.module('cssprawlApp')
         scope.$watch('[socialActivity.startDate,anomaly.startDate]', function(newValue, oldValue){
           if(newValue[0] == newValue[1] && newValue[0] && newValue[1]){
 
-            scope.socialActivity.cells.forEach(function(d){
-              var geometry = scope.grid.objects.grid_milan.geometries
-                .filter(function(e){ return d.cellId == e.properties.id})
-              if(geometry.length){
-                geometry[0].properties.socialActivity = d.value
+            scope.grid.objects.grid_milan.geometries.forEach(function(d){
+              var feature = scope.socialActivity.cells
+                .filter(function(e){ return e.cellId == d.properties.id})
+
+              if(feature.length){
+                 d.properties.socialActivity = feature[0].value;
+              }else {
+                delete d.properties.socialActivity;
               }
             })
 
@@ -71,8 +72,6 @@ angular.module('cssprawlApp')
               scope.grid,
               scope.grid.objects.grid_milan
             );
-
-            console.log(d3.geo.centroid(tweetsAcitve))
 
             tweetsAcitve.features = tweetsAcitve.features.filter(function(d){
               return d.properties.socialActivity
@@ -87,20 +86,26 @@ angular.module('cssprawlApp')
               })
             };
 
-            scope.anomaly.cells.forEach(function(d){
-              var geometry = scope.grid.objects.grid_milan.geometries
-                .filter(function(e){ return d.cellId == e.properties.id})
 
-              if(geometry.length){
-                geometry[0].properties.anomaly = d.value
+            scope.grid.objects.grid_milan.geometries.forEach(function(d){
+              var feature = scope.anomaly.cells
+                .filter(function(e){ return e.cellId == d.properties.id})
+
+              if(feature.length){
+                 d.properties.anomaly = feature[0].value;
+              }else {
+                delete d.properties.anomaly;
               }
-
             })
 
             var gridAcitve = topojson.feature(
               scope.grid,
               scope.grid.objects.grid_milan
             );
+
+            console.log(gridAcitve.features.filter(function(d){
+              return d.properties.id == 5160
+            }))
 
             gridAcitve.features = gridAcitve.features.filter(function(d){
               return d.properties.anomaly
@@ -121,19 +126,14 @@ angular.module('cssprawlApp')
             chartCitypixel.datum(gridAcitve).call(citypixel)
             chartTweet.datum(circleActive).call(tweet)
 
+            $timeout(function() {
+              scope.startDate =  d3.time.minute.offset(scope.startDate,15);
+              scope.getSocialData(scope.startDate);
+              scope.getAnomalyData(scope.startDate)
+            },5000);
+
           }
         })
-        // scope.$watch('tweetJson', function(newValue, oldValue){
-        //   if(newValue != oldValue){
-        //     chartTweet.datum(newValue).call(tweet)
-        //   }
-        // })
-        //
-        // scope.$watch('districtJson', function(newValue, oldValue){
-        //   if(newValue != oldValue){
-        //     chartDistrict.datum(newValue).call(district)
-        //   }
-        // })
       }
     };
   });

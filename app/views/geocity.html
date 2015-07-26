@@ -1,19 +1,29 @@
-<div class="view network">
+<div class="viz-panel push-right fullheight">
   <div class="fullheight" citymap></div>
-
-
 </div>
 
 
 
 
-<div class="info-panel">
+<div class="info-panel push-left fullheight">
   <div class="panel-txt">
-    <span class="txt-info title">CITYSENSING.</span> IT'S <span class="txt-info date">APRIL 10TH 2014</span>. AT <span class="txt-info date">9.30 AM</span>, THIS IS WHAT MILAN <span class="txt-info highlight">IS TWEETING</span> ABOUT. THE MOST TWEETED TOPIC IS <span class="txt-info highlight">#COOFFEE</span>. THESE ARE THE <span class="txt-info highlight">TOP SPEAKERS</span> ON TWITTER:
-
+    <p>
+      <span class="txt-info title">CITY SENSING.</span>
+      IT'S <span class="txt-info date">{{startDate | date:'longDate' | uppercase}}</span>.
+    </p>
+    <p>
+      AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span> MILANO
+      <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>.
+    </p>
+    <p>
+      MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span>.
+    </p>
+    <p>
+      AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>
+      THERE IS A STRANGE
+      <span>PHONE ACTIVITY</span> IN <span>{{stats.topAnomalyNil}}</span>
+    </p>
+    <div id="timeline-tweets" timelinetweets></div>
+    <div id="timeline-calls" timelinecalls></div>
   </div>
-
-  <div>timelines!!!</div>
-
-
 </div>
