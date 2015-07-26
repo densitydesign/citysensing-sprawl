@@ -103,10 +103,6 @@ angular.module('cssprawlApp')
               scope.grid.objects.grid_milan
             );
 
-            console.log(gridAcitve.features.filter(function(d){
-              return d.properties.id == 5160
-            }))
-
             gridAcitve.features = gridAcitve.features.filter(function(d){
               return d.properties.anomaly
             })
@@ -129,7 +125,8 @@ angular.module('cssprawlApp')
             $timeout(function() {
               scope.startDate =  d3.time.minute.offset(scope.startDate,15);
               scope.getSocialData(scope.startDate);
-              scope.getAnomalyData(scope.startDate)
+              scope.getAnomalyData(scope.startDate);
+              scope.getStats(scope.startDate);
             },5000);
 
           }

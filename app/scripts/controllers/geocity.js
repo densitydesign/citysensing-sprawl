@@ -14,7 +14,8 @@ angular.module('cssprawlApp')
 
       //get monday of previous week
       var today = new Date();
-      $scope.startDate = d3.time.week.offset(d3.time.week.floor(today),-2);
+      //$scope.startDate = d3.time.week.offset(d3.time.week.floor(today),-2);
+      $scope.startDate = d3.time.day.offset(d3.time.day.floor(today),-1);
       $scope.endDate;
 
       $scope.socialActivity;
@@ -80,7 +81,6 @@ angular.module('cssprawlApp')
 
         apiservice.getGeoCityGeneralStats(params).then(function(data){
           $scope.stats = data;
-          console.log($scope.stats)
         })
       }
 

@@ -49,18 +49,23 @@ body, html{
 body {
   background-color:black;
   color:white;
-  font-family:"clear_sansregular";
+  font-family:"clear_sans_regular";
 }
 
 .viz-panel{
-  width:80%;
+  width:75%;
 }
 
 .info-panel{
-  width:20%;
-  font-size:1.1em;
+  width:25%;
+  font-size:1.4em;
+  letter-spacing: 1.2px;
   background-color:#1A1A1A;
   line-height:1.6em;
+  display: flex;
+  align-content: space-between;
+  flex-wrap: wrap;
+  font-family:"clear_sans_lightregular";
 }
 
 .fullheight{
@@ -75,9 +80,17 @@ body {
   float:right;
 }
 
-.panel-txt{
-    padding:15px;
+.panel-txt, .panel-timelines{
+  padding:15px;
+  width:100%;
 }
+
+.panel-txt p{
+  margin: 0px;
+  min-height: 10px;
+  transition: all 1s;
+}
+
 .txt-info{
   font-family:"clear_sansbold";
 }
@@ -88,6 +101,11 @@ body {
 .txt-info.highlight{
   color:#0EA789;
 }
+
+.txt-info.highlightCalls{
+  color:#FFE100;
+}
+
 .viz{
   width:100%;
   height:100%;
@@ -109,9 +127,7 @@ body {
   stroke-opacity:0.5;
   fill:black;
 }
-svg text{
-  font-family:"clear_sansregular";
-}
+
 .top-user {
   height:60px;
   margin-top:15px;
@@ -125,6 +141,11 @@ svg text{
 /* timelines */
 #timeline-tweets, #timeline-calls{
   height: 150px;
+  width: 100%;
+}
+
+#timeline-tweets{
+  margin-bottom: 20px;
 }
 
 .axis path,
@@ -139,6 +160,8 @@ svg text{
   fill: white;
   font-family: "clear_sans_lightregular", sans-serif;
   font-size: 0.8em;
+  letter-spacing: normal;
+  line-height: normal;
 }
 
 .y path, .y line{

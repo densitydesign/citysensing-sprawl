@@ -20,10 +20,11 @@ angular.module('cssprawlApp')
 
         scope.$watch('socialTimeline.startDate', function(newValue, oldValue){
           if(newValue != oldValue && newValue){
+            scope.socialTimeline.timeline.sort(function(a,b){
+               return d3.ascending(a.date, b.date)
+            })
             var chartData = [{"key":"number of tweets", "values":scope.socialTimeline.timeline}];
-            chartTweet.datum(chartData).call(stackedTweet)
-            var brushDate = d3.max(scope.socialTimeline.timeline, function(d){return d.date})
-            chartTweet.call(stackedTweet.brushDate(newValue))
+            chartTweet.datum(chartData).call(stackedTweet.brushDate(newValue))
           }
         })
 

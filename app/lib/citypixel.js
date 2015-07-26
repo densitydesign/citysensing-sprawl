@@ -40,11 +40,12 @@
         var citypixels = chart.selectAll(".citypixel").data(data.features, function(d){return d.properties.id})
 
         citypixels
+          .attr("d", path)
           .transition()
           .duration(duration)
           .attr("fill-opacity", function(d){return scaleOpacity(d.properties.anomaly)})
-          .filter(function(d){return d.properties.id == 'inactive'})
-          .attr("d", path)
+          //.filter(function(d){return d.properties.id == 'inactive'})
+
 
         citypixels
           .enter().append("path")

@@ -21,14 +21,14 @@ angular.module('cssprawlApp')
         scope.$watch('callsTimeline.startDate', function(newValue, oldValue){
           if(newValue != oldValue && newValue){
             var chartData = [{"key":"amount of phone calls", "values":scope.callsTimeline.timeline}];
-            var brushDate = d3.max(scope.callsTimeline.timeline, function(d){return d.date})
-            chartCalls.datum(chartData).call(stackedCalls.brushDate(brushDate))
+            chartCalls.datum(chartData).call(stackedCalls.brushDate(newValue))
+
           }
         })
 
         scope.$watch('startDate', function(newValue, oldValue){
             if(newValue != oldValue && newValue){
-              //chartCalls.call(stackedCalls.brushDate(newValue))
+              chartCalls.call(stackedCalls.brushDate(newValue))
             }
         })
 

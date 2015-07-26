@@ -13,16 +13,16 @@
     </p>
     <p>
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span> MILANO
-      <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>.
-    </p>
-    <p>
+      <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>. 
       MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span>.
     </p>
     <p>
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>
       THERE IS A STRANGE
-      <span>PHONE ACTIVITY</span> IN <span>{{stats.topAnomalyNil}}</span>
+      <span class="txt-info highlightCalls">PHONE ACTIVITY</span> IN <span class="txt-info highlightCalls">{{stats.topAnomalyNil}}</span>
     </p>
+  </div>
+  <div class="panel-timelines">
     <div id="timeline-tweets" timelinetweets></div>
     <div id="timeline-calls" timelinecalls></div>
   </div>

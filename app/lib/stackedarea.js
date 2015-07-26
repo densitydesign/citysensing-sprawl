@@ -16,7 +16,7 @@
       selection.each(function(data){
 
         var chart;
-        var margin = {top: 10, right: 0, bottom: 40, left: 40},
+        var margin = {top: 10, right: 50, bottom: 40, left: 0},
             chartWidth = width - margin.left - margin.right,
             chartHeight = height - margin.top - margin.bottom;
 
@@ -49,7 +49,8 @@
         var area = d3.svg.area()
             .x(function(d) { return x(new Date(d.date)); })
             .y0(function(d) { return y(d.y0); })
-            .y1(function(d) { return y(d.y0 + d.y); });
+            .y1(function(d) { return y(d.y0 + d.y); })
+            .interpolate('step-after')
 
         var stack = d3.layout.stack()
             .values(function(d) { return d.values; })
@@ -67,7 +68,7 @@
 
         var yAxis = d3.svg.axis()
             .scale(y)
-            .orient("left")
+            .orient("right")
             .tickValues([0, yStackMax])
             .tickFormat(function(d){
               var format = d3.format('0.2s')
@@ -108,6 +109,23 @@
           .attr("fill", "black")
           .attr("fill-opacity", 0.7)
 
+          var fakeLine = chart.selectAll(".fakeLine").data(["brush"])
+
+          fakeLine
+            .transition()
+            .duration(duration)
+            .attr("x", x(new Date(brushDate)))
+
+          fakeLine
+            .enter()
+            .append("rect")
+            .attr("height", chartHeight)
+            .attr("width", 1)
+            .attr("class", "fakeLine")
+            .attr("x", x(xMin))
+            .attr("y", 0)
+            .attr("fill", "white")
+
 
         var legendScale = d3.scale.ordinal().rangeBands([0, chartWidth], 0, 0.1).domain(colorDomain)
 
@@ -131,10 +149,9 @@
           .append("text")
           .text(function(d){return d.toUpperCase()})
           .attr("x", 20)
-          .attr("dy", "-0.25em")
+          .attr("dy", "-0.1em")
 
         if(chart.select("g.x.axis").empty() || chart.select("g.y.axis").empty()){
-
           var lineData = [ { "x": 0,   "y": 0},  { "x": chartWidth,  "y": 0}];
           var lineFunction = d3.svg.line()
                            .x(function(d) { return d.x; })
@@ -150,6 +167,7 @@
 
           chart.append("g")
               .attr("class", "y axis")
+              .attr("transform", "translate(" + chartWidth + ",0)")
               .call(yAxis);
         }
 
