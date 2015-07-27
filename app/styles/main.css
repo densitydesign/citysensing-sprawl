@@ -121,15 +121,19 @@ body {
   stroke: #0EA789;
 }
 
-.node text {
-  stroke:#fff;
+text.txts {
+  fill:#fff;
+  stroke:none;
+  font-size:10px;
+
+  font-family:"clear_sansregular";
 }
 
-.node circle{
+circle.node{
   stroke:#0EA789;
   stroke-width:1;
   stroke-opacity:0.5;
-  fill:black;
+
 }
 
 .top-user {
