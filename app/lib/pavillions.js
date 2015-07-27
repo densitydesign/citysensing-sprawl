@@ -36,16 +36,21 @@
             return d.properties.value
         }));
         scaleOpacity.domain(opacityDomain)
+        console.log(opacityDomain)
 
         var pavillions = chart.selectAll(".pavillion").data(data.features, function(d){return d.properties.id})
 
         pavillions
           .transition()
-          .duration(duration/4)
-          .attr("fill-opacity", 1)
-          .transition()
-          .duration(duration/2)
+          .duration(1000)
           .attr("fill-opacity", function(d){return scaleOpacity(d.properties.value)})
+          .transition()
+          .duration(1000)
+          .delay(function(d,i){
+            return i*50
+          })
+          .attr("fill-opacity", 0.3)
+
 
         pavillions
           .enter().append("path")
@@ -69,24 +74,45 @@
         var pavillionName = chart.selectAll(".pavillionName").data(data.features, function(d){return d.properties.id})
 
         pavillionName
+          .attr("fill-opacity", 0)
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
+          .filter(function(d){return d.properties.value != 0})
+          .text(function(d){return d.properties.name})
+          .transition()
+          .duration(200)
+          .attr("fill-opacity", 0.9)
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]})
+          .transition()
+          .duration(1000)
+          .delay(function(d,i){
+            return i*100 + 800
+          })
+          .attr("fill-opacity", 0)
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]-50})
+
+        pavillionName
           .enter().append("text")
           .attr("class", "pavillionName")
-          .attr("x", function(d){return projection(d3.geo.centrid(d))[0]})
-          .attr("y", function(d){return projection(d3.geo.centrid(d))[1]})
+          .attr("x", function(d){return projection(d3.geo.bounds(d)[1])[0]})
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
           .attr("fill", "white")
           .attr("text-anchor","middle")
-          .attr("font-family", '"clear_sans_lightregular", sans-serif')
-          .attr("font-size", "0.85em")
+          .attr("font-family", '"clear_sans_regular", sans-serif')
+          .attr("font-size", "1.3em")
           .attr("fill-opacity", 0)
+          .filter(function(d){return d.properties.value != 0})
+          .text(function(d){return d.properties.name})
           .transition()
-          .duration(500)
+          .duration(200)
           .attr("fill-opacity", 0.9)
-          .attr("y", function(d){return projection(d3.geo.centrid(d))[1]+10})
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]})
           .transition()
-          .duration(duration/2)
+          .duration(1000)
+          .delay(function(d,i){
+            return i*100 + 800
+          })
           .attr("fill-opacity", 0)
-          .attr("y", function(d){return projection(d3.geo.centrid(d))[1]+20})
-          .remove()
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]-50})
 
       }); //end selection
     } // end pavillion

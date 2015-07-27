@@ -44,20 +44,33 @@ angular.module('cssprawlApp')
         var chartPost = d3.select(element[0])
 
         scope.$watch('[socialActivity.startDate,pavillionsActivity.startDate,stats.startDate]', function(newValue, oldValue){
-          if(newValue[0] == newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
+          if(newValue[0] == newValue[1] && newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
 
-            scope.pavillionsActivity.posts.forEach(function(d){
-              var feature = pavillions.features.filter(function(e){
-                return e.properties.id == d.placeId
+            pavillions.features.forEach(function(d){
+              var feature = scope.pavillionsActivity.posts.filter(function(e){
+                return d.properties.id == e.placeId
               })
 
               if(feature.length){
-                feature.properties.value = d.value;
+                d.properties.value = feature[0].value;
+              }else{
+                d.properties.value = 0;
               }
+
             })
 
+            // scope.pavillionsActivity.posts.forEach(function(d){
+            //   var feature = pavillions.features.filter(function(e){
+            //     return e.properties.id == d.placeId
+            //   })
+            //
+            //   if(feature.length){
+            //     feature[0].properties.value = d.value;
+            //   }
+            // })
+
             chartPavillion.datum(pavillions).call(pavillion)
-            chartPost.datum(scope.socialActivity).call(post)
+            //chartPost.datum(scope.socialActivity).call(post)
 
             $timeout(function() {
               scope.startDate =  d3.time.minute.offset(scope.startDate,15);
