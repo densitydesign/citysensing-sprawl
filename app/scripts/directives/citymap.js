@@ -54,8 +54,10 @@ angular.module('cssprawlApp')
 
         var chartTweet = d3.select(element[0])
 
-        scope.$watch('[socialActivity.startDate,anomaly.startDate]', function(newValue, oldValue){
-          if(newValue[0] == newValue[1] && newValue[0] && newValue[1]){
+        var first = true;
+
+        scope.$watch('[socialActivity.startDate,anomaly.startDate,stats.startDate]', function(newValue, oldValue){
+          if(newValue[0] == newValue[1] && newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
 
             scope.grid.objects.grid_milan.geometries.forEach(function(d){
               var feature = scope.socialActivity.cells
@@ -122,16 +124,30 @@ angular.module('cssprawlApp')
             chartCitypixel.datum(gridAcitve).call(citypixel)
             chartTweet.datum(circleActive).call(tweet)
 
+
+
             $timeout(function() {
-              var nextDate = d3.time.minute.offset(scope.startDate,15);
+              var nextDate;
+              if(first){
+                nextDate = d3.time.hour.offset(scope.startDate,23);
+                first = false;
+              }else{
+                nextDate = d3.time.minute.offset(scope.startDate,15);
+                if(nextDate.getTime() == scope.today.getTime()){
+                  nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                }
+                //ok
+              }
               if(scope.startDate.getDay() != nextDate.getDay()){
+                first = true;
                   scope.getTimeSocialData(nextDate)
+                  scope.getTimeCallsData(nextDate)
               }
               scope.startDate = nextDate;
               scope.getSocialData(scope.startDate);
               scope.getAnomalyData(scope.startDate);
               scope.getStats(scope.startDate);
-            },5000);
+            },2000);
 
           }
         })

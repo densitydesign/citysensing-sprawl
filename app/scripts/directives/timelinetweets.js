@@ -24,7 +24,13 @@ angular.module('cssprawlApp')
                return d3.ascending(a.date, b.date)
             })
             var chartData = [{"key":"number of tweets", "values":scope.socialTimeline.timeline}];
-            chartTweet.datum(chartData).call(stackedTweet.brushDate(newValue))
+            chartTweet.datum(chartData)
+              .call(stackedTweet
+                .brushDate(newValue)
+                .startDate(scope.socialTimeline.startDate)
+                .endDate(scope.socialTimeline.endDate)
+              )
+
           }
         })
 

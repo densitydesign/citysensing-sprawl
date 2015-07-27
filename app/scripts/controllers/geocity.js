@@ -13,9 +13,9 @@ angular.module('cssprawlApp')
       $scope.grid = grid;
 
       //get monday of previous week
-      var today = new Date();
-      //$scope.startDate = d3.time.week.offset(d3.time.week.floor(today),-2);
-      $scope.startDate = d3.time.day.offset(d3.time.day.floor(today),-1);
+      $scope.today = d3.time.day.floor(new Date());
+      $scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
+      //$scope.startDate = d3.time.day.offset(d3.time.day.floor($scope.today),-2);
       $scope.endDate;
 
       $scope.socialActivity;
@@ -33,13 +33,18 @@ angular.module('cssprawlApp')
         var endDate = d3.time.minute.offset(date,15);
         var params = {startDate:date.getTime(),endDate: endDate.getTime()};
 
-        apiservice.getGeoCitySocialActivityCells(params).then(function(data){
-
-          data.cells = data.cells.filter(function(d){
-            return d.cellId >= 0 && d.value > 1;
-          })
-          $scope.socialActivity = data;
-        })
+        apiservice.getGeoCitySocialActivityCells(params).then(
+          function(data){
+            data.cells = data.cells.filter(function(d){
+              return d.cellId >= 0 && d.value > 1;
+            })
+            $scope.socialActivity = data;
+          },
+          function(err){
+              console.warn(err)
+            $scope.socialActivity = {"startDate":params.startDate,"endDate":params.endDate,cells:[]}
+          }
+        )
       }
 
       $scope.getAnomalyData = function(date) {
@@ -47,22 +52,33 @@ angular.module('cssprawlApp')
         //var params = {startDate:date.getTime()};
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
-        apiservice.getGeoCityCallsAnomalyCells(params).then(function(data){
-
-          data.cells = data.cells.filter(function(d){
-            return d.cellId >= 0 && d.value >=0;
-          })
-          $scope.anomaly = data;
-        })
+        apiservice.getGeoCityCallsAnomalyCells(params).then(
+          function(data){
+            data.cells = data.cells.filter(function(d){
+              return d.cellId >= 0 && d.value >=0;
+            })
+            $scope.anomaly = data;
+          },
+          function(err){
+              console.warn(err)
+            $scope.anomaly = {"startDate":params.startDate,"endDate":params.endDate,cells:[]}
+          }
+        )
       }
 
       $scope.getTimeSocialData = function(date) {
         var endDate = d3.time.day.offset(date,1);
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
-        apiservice.getGeoCitySocialActivityTimeline(params).then(function(data){
-          $scope.socialTimeline = data;
-        })
+        apiservice.getGeoCitySocialActivityTimeline(params).then(
+          function(data){
+            $scope.socialTimeline = data;
+          },
+          function(err){
+              console.warn(err)
+            $scope.socialTimeline = {"startDate":params.startDate,"endDate":params.endDate,timeline:[]}
+          }
+          )
       }
 
       $scope.getTimeCallsData = function(date) {
@@ -70,18 +86,36 @@ angular.module('cssprawlApp')
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
         //var params = {startDate:date.getTime()};
 
-        apiservice.getGeoCityCallsTimeline(params).then(function(data){
-          $scope.callsTimeline = data;
-        })
+        apiservice.getGeoCityCallsTimeline(params).then(
+          function(data){
+            $scope.callsTimeline = data;
+          },
+          function(err){
+              console.warn(err)
+            $scope.callsTimeline = {"startDate":params.startDate,"endDate":params.endDate,timeline:[]}
+          }
+        )
       }
 
       $scope.getStats = function(date) {
         var endDate = d3.time.day.offset(date,1);
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
-        apiservice.getGeoCityGeneralStats(params).then(function(data){
-          $scope.stats = data;
-        })
+        apiservice.getGeoCityGeneralStats(params).then(
+          function(data){
+            $scope.stats = data;
+          },function(err){
+                console.warn(err)
+            $scope.stats = {
+              "startDate":params.startDate,
+              "endDate":params.endDate,
+              "totPosts":"nd",
+              "topSocialNil":"nd",
+              "topSocialCellId":"nd",
+              "topAnomalyNil":"nd"
+            }
+          }
+        )
       }
 
       $scope.getTimeSocialData($scope.startDate)

@@ -43,32 +43,43 @@
 
         var posts = chart.selectAll(".post").data(data.posts)
 
-        // posts
-        //   .transition()
-        //   .duration(function(d){return durationScale(d.properties.socialActivity)})
-        //   .attr("d", path.pointRadius(function(d){
-        //     return Math.sqrt((radiusScale(d.properties.socialActivity)/Math.PI))
-        //   }))
-        //   .attr("fill-opacity", 0.5)
+        posts
+          .attr("fill-opacity", 0)
+          .attr("r", 0)
+          .attr("cx", function(d){return projection([d.lon, d.lat])[0]})
+          .attr("cy", function(d){return projection([d.lon, d.lat])[1]})
+          .transition()
+          .duration(1000)
+          .delay(function(d,i){
+            return  i*50
+          })
+          .attr("r", 7)
+          .attr("fill-opacity", 0.9)
+          .transition()
+          .duration(1000)
+          .attr("r", 15)
+          .attr("fill-opacity", 0)
 
         posts
           .enter()
           .append("circle")
           .attr("class", "post")
-          .attr("cx", function(d){return projection([d.lon, d.lat][0])})
-          .attr("cy", function(d){return projection([d.lon, d.lat][1])})
+          .attr("cx", function(d){return projection([d.lon, d.lat])[0]})
+          .attr("cy", function(d){return projection([d.lon, d.lat])[1]})
           .attr("r", 0)
           .attr("fill", "#0EA789")
           .attr("fill-opacity", 0)
             .transition()
-            .duration(duration/Math.random())
+            .duration(1000)
+            .delay(function(d,i){
+              return  i*50
+            })
             .attr("r", 7)
             .attr("fill-opacity", 0.9)
             .transition()
-            .duration(duration/Math.random())
-            .attr("r", 10)
+            .duration(1000)
+            .attr("r", 15)
             .attr("fill-opacity", 0)
-            .remove()
 
         // posts
         //   .exit()

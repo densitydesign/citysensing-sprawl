@@ -36,7 +36,6 @@
             return d.properties.value
         }));
         scaleOpacity.domain(opacityDomain)
-        console.log(opacityDomain)
 
         var pavillions = chart.selectAll(".pavillion").data(data.features, function(d){return d.properties.id})
 
@@ -59,7 +58,7 @@
           .attr("fill", "#488fc5")
           .attr("fill-opacity", 0)
           .transition()
-          .duration(duration/5)
+          .duration(100)
           .delay(function(d,i){
             return 20*i
           })
@@ -76,7 +75,7 @@
         pavillionName
           .attr("fill-opacity", 0)
           .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
-          .filter(function(d){return d.properties.value != 0})
+          .filter(function(d){return d.properties.value})
           .text(function(d){return d.properties.name})
           .transition()
           .duration(200)
@@ -97,10 +96,10 @@
           .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
           .attr("fill", "white")
           .attr("text-anchor","middle")
-          .attr("font-family", '"clear_sans_regular", sans-serif')
+          .attr("font-family", "'clear_sansregular', sans-serif")
           .attr("font-size", "1.3em")
           .attr("fill-opacity", 0)
-          .filter(function(d){return d.properties.value != 0})
+          .filter(function(d){return d.properties.value})
           .text(function(d){return d.properties.name})
           .transition()
           .duration(200)

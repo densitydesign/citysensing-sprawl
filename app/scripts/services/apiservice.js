@@ -33,7 +33,7 @@ angular.module('cssprawlApp')
          }).success(function(data){
            deferred.resolve(data);
          }).error(function(){
-           deferred.reject("An error occured while fetching file");
+           deferred.reject("An error occured while fetching geo/city/social_activity/timeline");
          });
 
          return deferred.promise;
@@ -48,7 +48,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching geo/city/calls/timeline");
           });
 
           return deferred.promise;
@@ -63,7 +63,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching geo/city/calls_anomaly/cells");
           });
 
           return deferred.promise;
@@ -78,7 +78,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching geo/city/social_activity/cells");
           });
 
           return deferred.promise;
@@ -93,7 +93,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching geo/city/social_activity/cells");
           });
 
           return deferred.promise;
@@ -108,7 +108,7 @@ angular.module('cssprawlApp')
            }).success(function(data){
              deferred.resolve(data);
            }).error(function(){
-             deferred.reject("An error occured while fetching file");
+             deferred.reject("An error occured while fetching geo/city/social_activity/cells");
            });
 
            return deferred.promise;
@@ -123,7 +123,7 @@ angular.module('cssprawlApp')
             }).success(function(data){
               deferred.resolve(data);
             }).error(function(){
-              deferred.reject("An error occured while fetching file");
+              deferred.reject("An error occured while fetching geo/expo/instagram/timeline");
             });
 
             return deferred.promise;
@@ -138,7 +138,7 @@ angular.module('cssprawlApp')
             }).success(function(data){
               deferred.resolve(data);
             }).error(function(){
-              deferred.reject("An error occured while fetching file");
+              deferred.reject("An error occured while fetching geo/expo/social_activity/geo");
             });
 
             return deferred.promise;
@@ -153,7 +153,7 @@ angular.module('cssprawlApp')
             }).success(function(data){
               deferred.resolve(data);
             }).error(function(){
-              deferred.reject("An error occured while fetching file");
+              deferred.reject("An error occured while fetching geo/expo/social_activity/text");
             });
 
             return deferred.promise;
@@ -168,7 +168,7 @@ angular.module('cssprawlApp')
             }).success(function(data){
               deferred.resolve(data);
             }).error(function(){
-              deferred.reject("An error occured while fetching file");
+              deferred.reject("An error occured while fetching geo/expo/general_stats");
             });
 
             return deferred.promise;
@@ -183,7 +183,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching network/city/graph");
           });
 
           return deferred.promise;
@@ -198,7 +198,7 @@ angular.module('cssprawlApp')
           }).success(function(data){
             deferred.resolve(data);
           }).error(function(){
-            deferred.reject("An error occured while fetching file");
+            deferred.reject("An error occured while fetching network/city/users");
           });
 
           return deferred.promise;

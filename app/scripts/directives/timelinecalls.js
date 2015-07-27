@@ -21,7 +21,13 @@ angular.module('cssprawlApp')
         scope.$watch('callsTimeline.startDate', function(newValue, oldValue){
           if(newValue != oldValue && newValue){
             var chartData = [{"key":"amount of phone calls", "values":scope.callsTimeline.timeline}];
-            chartCalls.datum(chartData).call(stackedCalls.brushDate(newValue))
+            chartCalls.datum(chartData)
+              .call(
+                stackedCalls
+                  .brushDate(newValue)
+                  .startDate(scope.callsTimeline.startDate)
+                  .endDate(scope.callsTimeline.endDate)
+              )
 
           }
         })

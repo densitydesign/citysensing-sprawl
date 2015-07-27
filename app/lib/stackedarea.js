@@ -6,6 +6,8 @@
 
     var height = 600,
         width = 600,
+        startDate,
+        endDate,
         stackColors = ["#0EA789", "#0EA789"],
         brushDate,
         duration = 2000,
@@ -14,6 +16,10 @@
 
     function stackedArea(selection){
       selection.each(function(data){
+
+        if(!data[0].values.length){
+          return
+        }
 
         var chart;
         var margin = {top: 10, right: 50, bottom: 40, left: 0},
@@ -63,6 +69,14 @@
         var xMax = d3.max(layers, function(layer) {return d3.max(layer.values, function(d) { return new Date(d.date); }); });
         var xMin = d3.min(layers, function(layer) {return d3.min(layer.values, function(d) { return new Date(d.date); }); });
 
+
+        if(startDate){
+          var  xMin = new Date(startDate)
+        }
+        if (endDate) {
+          var xMax = new Date(endDate)
+        }
+
         x.domain([xMin,xMax])
         y.domain([0,yStackMax])
 
@@ -79,20 +93,29 @@
             })
 
 
-        var stacked = chart.selectAll(".stack")
-                      .data(layers)
-                      .enter().append("g")
-                      .attr("class", "stack")
-                      .attr("opacity", function(d,i){return i > 0 ? 0.5 : 0.9})
+        // var stacked = chart.selectAll(".stack")
+        //               .data(layers)
+        //               .enter().append("g")
+        //               .attr("class", "stack")
+        //               .attr("opacity", function(d,i){return i > 0 ? 0.5 : 0.9})
 
-        stacked.transition()
-          .duration(duration)
+        var stacked = chart.selectAll(".area")
+                      .data(layers, function(d){return d.key})
+
+        stacked
           .attr("d", function(d) { return area(d.values); })
 
-        stacked.append("path")
-          .attr("class", "area")
-          .attr("d", function(d) { return area(d.values); })
-          .attr("fill", function(d) { return color(d.key); });
+        stacked.enter().append("path")
+            .attr("class", "area")
+            .attr("d", function(d) { return area(d.values); })
+            .attr("fill", function(d) { return color(d.key); })
+            .attr("fill-opacity", function(d,i){return i > 0 ? 0.5 : 0.9});
+
+        // stacked.append("path")
+        //   .attr("class", "area")
+        //   .attr("d", function(d) { return area(d.values); })
+        //   .attr("fill", function(d) { return color(d.key); });
+
 
         var fakeBrush = chart.selectAll(".fakeBrush").data(["brush"])
 
@@ -202,6 +225,18 @@
   stackedArea.brushDate = function(x){
     if (!arguments.length) return brushDate;
     brushDate = x;
+    return stackedArea;
+  }
+
+  stackedArea.startDate = function(x){
+    if (!arguments.length) return startDate;
+    startDate = x;
+    return stackedArea;
+  }
+
+  stackedArea.endDate = function(x){
+    if (!arguments.length) return endDate;
+    endDate = x;
     return stackedArea;
   }
 

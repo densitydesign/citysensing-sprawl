@@ -19,14 +19,14 @@ angular.module('cssprawlApp')
             projection = d3.geo.mercator(),
             path = d3.geo.path().projection(projection),
             b = path.bounds(pavillions),
-            s = 100 / Math.max((b[1][0] - b[0][0]) / (width+500), (b[1][1] - b[0][1]) / (height+500)),
+            s = 100 / Math.max((b[1][0] - b[0][0]) / (width+1100), (b[1][1] - b[0][1]) / (height+1100)),
             t = [width/ 2, height / 2];
 
         var center = d3.geo.centroid(pavillions)
         projection
           .scale(s)
           .translate(t)
-          .rotate([-center[0],-center[1],25.2])
+          .rotate([-center[0]+0.002,-center[1],25.2])
 
         var pavillion = cssprawl.pavillion()
                     .width(width)
@@ -59,18 +59,8 @@ angular.module('cssprawlApp')
 
             })
 
-            // scope.pavillionsActivity.posts.forEach(function(d){
-            //   var feature = pavillions.features.filter(function(e){
-            //     return e.properties.id == d.placeId
-            //   })
-            //
-            //   if(feature.length){
-            //     feature[0].properties.value = d.value;
-            //   }
-            // })
-
             chartPavillion.datum(pavillions).call(pavillion)
-            //chartPost.datum(scope.socialActivity).call(post)
+            chartPost.datum(scope.socialActivity).call(post)
 
             $timeout(function() {
               scope.startDate =  d3.time.minute.offset(scope.startDate,15);
