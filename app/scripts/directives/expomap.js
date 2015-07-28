@@ -43,6 +43,8 @@ angular.module('cssprawlApp')
 
         var chartPost = d3.select(element[0])
 
+        var first = true;
+
         scope.$watch('[socialActivity.startDate,pavillionsActivity.startDate,stats.startDate]', function(newValue, oldValue){
           if(newValue[0] == newValue[1] && newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
 
@@ -63,7 +65,24 @@ angular.module('cssprawlApp')
             chartPost.datum(scope.socialActivity).call(post)
 
             $timeout(function() {
-              scope.startDate =  d3.time.minute.offset(scope.startDate,15);
+              var nextDate;
+              if(first){
+                nextDate = d3.time.hour.offset(scope.startDate,23);
+                first = false;
+              }else{
+                nextDate = d3.time.minute.offset(scope.startDate,15);
+                if(nextDate.getTime() == scope.today.getTime()){
+                  nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                }
+                //ok
+              }
+              if(scope.startDate.getDay() != nextDate.getDay()){
+                first = true;
+                  scope.getTimeSocialData(nextDate)
+                  scope.getTimeInstagramData(nextDate)
+              }
+              scope.startDate = nextDate;
+              //scope.startDate =  d3.time.minute.offset(scope.startDate,15);
               scope.getSocialData(scope.startDate);
               scope.getPavillionsData(scope.startDate);
               scope.getStats(scope.startDate);

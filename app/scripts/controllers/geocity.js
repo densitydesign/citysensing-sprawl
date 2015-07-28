@@ -109,10 +109,10 @@ angular.module('cssprawlApp')
             $scope.stats = {
               "startDate":params.startDate,
               "endDate":params.endDate,
-              "totPosts":"nd",
-              "topSocialNil":"nd",
-              "topSocialCellId":"nd",
-              "topAnomalyNil":"nd"
+              "totPosts":undefined,
+              "topSocialNil":undefined,
+              "topSocialCellId":undefined,
+              "topAnomalyNil":undefined
             }
           }
         )
