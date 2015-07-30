@@ -14,8 +14,9 @@ angular.module('cssprawlApp')
 
       //get monday of previous week
       $scope.today = d3.time.day.floor(new Date());
-      $scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
+      //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
       //$scope.startDate = d3.time.day.offset(d3.time.day.floor(today),-1);
+        $scope.startDate = d3.time.week.floor($scope.today);
       $scope.endDate;
 
       $scope.socialActivity;
@@ -87,7 +88,7 @@ angular.module('cssprawlApp')
       }
 
       $scope.getStats = function(date) {
-        var endDate = d3.time.day.offset(date,1);
+        var endDate = d3.time.minute.offset(date,15);
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
         apiservice.getGeoExpoGeneralStats(params).then(

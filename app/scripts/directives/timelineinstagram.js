@@ -23,8 +23,12 @@ angular.module('cssprawlApp')
             scope.instagramTimeline.timeline.sort(function(a,b){
                return d3.ascending(a.date, b.date)
             })
-            var chartData = [{"key":"number of Instagram photos", "values":scope.instagramTimeline.timeline}];
-            chartInstagram.datum(chartData).call(stackedInstagram.brushDate(newValue))
+            var chartData = [{"key":"number of Instagram posts", "values":scope.instagramTimeline.timeline}];
+            chartInstagram.datum(chartData).call(
+              stackedInstagram.brushDate(newValue)
+              .startDate(scope.instagramTimeline.startDate)
+              .endDate(scope.instagramTimeline.endDate)
+            )
           }
         })
 
