@@ -14,8 +14,8 @@ angular.module('cssprawlApp')
 
       //get monday of previous week
       $scope.today = d3.time.day.floor(new Date());
-      $scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
-      //$scope.startDate = d3.time.day.offset(d3.time.day.floor($scope.today),-2);
+      //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
+      $scope.startDate = d3.time.week.floor($scope.today);
       $scope.endDate;
 
       $scope.socialActivity;
@@ -98,7 +98,7 @@ angular.module('cssprawlApp')
       }
 
       $scope.getStats = function(date) {
-        var endDate = d3.time.day.offset(date,1);
+        var endDate = d3.time.minute.offset(date,15);
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
         apiservice.getGeoCityGeneralStats(params).then(
@@ -109,10 +109,10 @@ angular.module('cssprawlApp')
             $scope.stats = {
               "startDate":params.startDate,
               "endDate":params.endDate,
-              "totPosts":"nd",
-              "topSocialNil":"nd",
-              "topSocialCellId":"nd",
-              "topAnomalyNil":"nd"
+              "totPosts":undefined,
+              "topSocialNil":undefined,
+              "topSocialCellId":undefined,
+              "topAnomalyNil":undefined
             }
           }
         )

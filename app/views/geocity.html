@@ -11,12 +11,12 @@
       <span class="txt-info title">CITY SENSING.</span>
       IT'S <span class="txt-info date">{{startDate | date:'longDate' | uppercase}}</span>.
     </p>
-    <p>
+    <p ng-show="stats.totPosts">
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span> MILANO
       <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>.
       MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span>.
     </p>
-    <p>
+    <p ng-show="stats.topAnomalyNil">
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>
       THERE IS A STRANGE
       <span class="txt-info highlightCalls">PHONE ACTIVITY</span> IN <span class="txt-info highlightCalls">{{stats.topAnomalyNil}}</span>
