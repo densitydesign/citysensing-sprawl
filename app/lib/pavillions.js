@@ -73,8 +73,8 @@
         var pavillionName = chart.selectAll(".pavillionName").data(data.features, function(d){return d.properties.id})
 
         pavillionName
-          .attr("fill-opacity", 0)
-          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
+          //.attr("fill-opacity", 0)
+          //.attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
           .filter(function(d){return d.properties.value})
           .text(function(d){return d.properties.name})
           .transition()
@@ -88,6 +88,9 @@
           })
           .attr("fill-opacity", 0)
           .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]-50})
+          .transition()
+          .duration(1)
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
 
         pavillionName
           .enter().append("text")

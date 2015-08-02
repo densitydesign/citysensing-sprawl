@@ -9,21 +9,23 @@
   <div class="panel-txt">
     <p>
       <span class="txt-info title">CITY SENSING.</span>
-      IT'S <span class="txt-info date">{{startDate | date:'longDate' | uppercase}}</span>.
+      IT'S <span class="txt-info date">{{panelDate | date:'longDate' | uppercase}}</span>.
     </p>
-    <p ng-show="stats.totPosts">
-      AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span> MILANO
+    <p ng-show="stats.totPosts" class="panelFade">
+      AT <span class="txt-info date">{{panelDate | date:'HH:mm a' | uppercase}}</span> MILANO
       <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>.
-      MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span>.
     </p>
-    <p ng-show="stats.topAnomalyNil">
+    <p ng-show="stats.topSocialNil" class="panelFade">
+      MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span> DISTRICT.
+    </p>
+    <!-- <p ng-show="stats.topAnomalyNil">
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>
       THERE IS A STRANGE
       <span class="txt-info highlightCalls">PHONE ACTIVITY</span> IN <span class="txt-info highlightCalls">{{stats.topAnomalyNil}}</span>
-    </p>
+    </p> -->
   </div>
   <div class="panel-timelines">
     <div ng-show="socialTimeline.timeline.length" id="timeline-tweets" timelinetweets></div>
-    <div ng-show="callsTimeline.timeline.length" id="timeline-calls" timelinecalls></div>
+    <!-- <div ng-show="callsTimeline.timeline.length" id="timeline-calls" timelinecalls></div> -->
   </div>
 </div>

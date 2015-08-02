@@ -9,9 +9,21 @@
 
 <div class="info-panel push-right fullheight">
   <div class="panel-txt">
-    <span class="txt-info title">CITYSENSING.</span><span ng-show="start"> IT'S <span class="txt-info date">{{start | date:'mediumDate'}}</span>. AT <span class="txt-info date">{{start | date:'shortTime'}}</span>, THIS IS WHAT MILAN <span class="txt-info highlight">IS TWEETING</span> ABOUT. THE MOST TWEETED TOPIC IS <span class="txt-info highlight">#COOFFEE</span>. THESE ARE THE <span class="txt-info highlight">TOP SPEAKERS</span> ON TWITTER:</span>
-    <div topnet></div>
+    <p>
+      <span class="txt-info title">CITY SENSING.</span>
+      IT'S <span class="txt-info date">{{start | date:'longDate' | uppercase}}</span>.
+    </p>
+    <p>
+    AT <span class="txt-info date">{{start | date:'HH:mm a' | uppercase}}</span>, THIS IS WHAT MILAN <span class="txt-info highlight">IS TWEETING</span> ABOUT.
+    </p>
+    <p ng-show="topTopic" class="panelFade">
+    THE MOST TWEETED TOPIC IS <span class="txt-info highlight">{{topTopic}}</span>.
+    </p>
+    <p ng-show="topData.users.length" class="panelFade">
+    THESE ARE THE <span class="txt-info highlight">TOP SPEAKERS</span> ON TWITTER:</span>
+    </p>
   </div>
+  <div topnet></div>
 
 
 

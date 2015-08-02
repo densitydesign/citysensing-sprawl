@@ -26,15 +26,35 @@ angular.module('cssprawlApp')
 
         $scope.netData = data[0];
         $scope.topData = data[1];
+
+        $scope.topTopic = $scope.netData.nodes
+          .filter(function(d){return d.type == 'cluster'})
+          .sort(function(a,b){return d3.descending(a.value,b.value)})[0].name
+
         $scope.start = date;
 
         $timeout(function () {
+          if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+            endDate = scope.today;
+          }
           $scope.start = endDate;
           $scope.getNetData($scope.start)
-        }, 1000);
+        }, 2000);
 
       })
-        .catch(function(error) { console.log(error) });
+        .catch(function(error) {
+          console.warn(error)
+          $scope.topTopic = undefined;
+          var endDate = d3.time.minute.offset(date, 15);
+          $timeout(function () {
+            if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+              endDate = scope.today;
+            }
+            $scope.start = endDate;
+            $scope.getNetData($scope.start)
+          }, 2000);
+
+        });
     }
 
     /*
@@ -73,12 +93,15 @@ angular.module('cssprawlApp')
 
 */
 
-    //get monday of previous week
-    var today = d3.time.week(d3.time.day(new Date()));
-    //$scope.start = d3.time.day.offset(d3.time.week.offset(today,-1),-3);
-    var first = d3.time.day.offset(d3.time.day(new Date()),-15);
+//$scope.today = d3.time.day.floor(new Date());
+//$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
 
-    $scope.getNetData(first);
+    //fixed date - to be removed
+    $scope.today = new Date(2015,6,6);
+    $scope.start = $scope.today;
+    //var first = d3.time.day.offset(d3.time.day(new Date()),-15);
+    $scope.topTopic;
+    $scope.getNetData($scope.start);
   // $scope.getTopData($scope.start);
 
 

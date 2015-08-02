@@ -9,12 +9,15 @@
   <div class="panel-txt">
     <p>
       <span class="txt-info title">CITY SENSING.</span>
-      IT'S <span class="txt-info date">{{startDate | date:'longDate' | uppercase}}</span>.
+      IT'S <span class="txt-info date">{{panelDate | date:'longDate' | uppercase}}</span>.
     </p>
-    <p ng-show="stats.totPosts">
-      AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span> EXPO2015
+    <p ng-show="stats.totPosts" class="panelFade">
+      AT <span class="txt-info date">{{panelDate | date:'HH:mm a' | uppercase}}</span> EXPO2015
       <span class="txt-info highlight"> HAS SENT {{stats.totPosts}} TWEETS</span>.
-      THE MOST OF CITED PAVILION IS <span class="txt-info highlightPavilion">{{stats.topSocialVenue}}</span>.
+    </p>
+    <p ng-show="stats.topSocialVenue" class="panelFade">
+      <!-- THE MOST CITED VENUE IS THE<span class="txt-info highlightPavilion">{{stats.topSocialVenue}}</span>. -->
+      THE MOST CITED VENUE IS THE<span class="txt-info highlightPavilion">{{ stats.topSocialVenueId | venueName:pavillions}}</span>.
     </p>
     <!-- <p>
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>

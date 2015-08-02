@@ -12,11 +12,13 @@ angular.module('cssprawlApp')
 
       $scope.pavillions = pavillions;
 
-      //get monday of previous week
-      $scope.today = d3.time.day.floor(new Date());
+      //$scope.today = d3.time.day.floor(new Date());
       //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
-      //$scope.startDate = d3.time.day.offset(d3.time.day.floor(today),-1);
-        $scope.startDate = d3.time.week.floor($scope.today);
+
+      //fixed date - to be removed
+      $scope.today = new Date(2015,6,6);
+      $scope.startDate = $scope.today;
+      $scope.panelDate = $scope.today;
       $scope.endDate;
 
       $scope.socialActivity;

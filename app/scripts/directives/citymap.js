@@ -59,6 +59,8 @@ angular.module('cssprawlApp')
         scope.$watch('[socialActivity.startDate,anomaly.startDate,stats.startDate]', function(newValue, oldValue){
           if(newValue[0] == newValue[1] && newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
 
+            scope.panelDate = scope.startDate;
+
             scope.grid.objects.grid_milan.geometries.forEach(function(d){
               var feature = scope.socialActivity.cells
                 .filter(function(e){ return e.cellId == d.properties.id})
@@ -133,15 +135,16 @@ angular.module('cssprawlApp')
                 first = false;
               }else{
                 nextDate = d3.time.minute.offset(scope.startDate,15);
-                if(nextDate.getTime() == scope.today.getTime()){
-                  nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                if(nextDate.getTime() == d3.time.day.offset(scope.today,7).getTime()){
+                  //nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                  nextDate = scope.today;
                 }
                 //ok
               }
               if(scope.startDate.getDay() != nextDate.getDay()){
                 first = true;
                   scope.getTimeSocialData(nextDate)
-                  scope.getTimeCallsData(nextDate)
+                  //scope.getTimeCallsData(nextDate)
               }
               scope.startDate = nextDate;
               scope.getSocialData(scope.startDate);

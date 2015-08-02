@@ -48,6 +48,8 @@ angular.module('cssprawlApp')
         scope.$watch('[socialActivity.startDate,pavillionsActivity.startDate,stats.startDate]', function(newValue, oldValue){
           if(newValue[0] == newValue[1] && newValue[1] == newValue[2] && newValue[0] && newValue[1] && newValue[2]){
 
+            scope.panelDate = scope.startDate;
+
             pavillions.features.forEach(function(d){
               var feature = scope.pavillionsActivity.posts.filter(function(e){
                 return d.properties.id == e.placeId
@@ -71,8 +73,9 @@ angular.module('cssprawlApp')
                 first = false;
               }else{
                 nextDate = d3.time.minute.offset(scope.startDate,15);
-                if(nextDate.getTime() == scope.today.getTime()){
-                  nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                if(nextDate.getTime() == d3.time.day.offset(scope.today,7).getTime()){
+                  //nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
+                  nextDate = scope.today;
                 }
                 //ok
               }

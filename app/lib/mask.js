@@ -31,9 +31,9 @@
         var paths = data.features.map(function(d){return path(d)})
 
         chart.append("path")
-          .attr("class", ".mask")
+          .attr("class", "mask")
           .attr("fill-rule", "evenodd")
-          .attr("d", function(d) { return "M-1,-1H" + width+1 + "V" + height+1 + "H0Z" + paths.join(" "); })
+          .attr("d", function(d) { return "M-1,-1H" + (width+1) + "V" + (height+1) + "H-1Z" + paths.join(" "); })
           .attr("fill", "black")
           .attr("stroke", "#ffe100")
           .attr("fill-opacity", 0.9)

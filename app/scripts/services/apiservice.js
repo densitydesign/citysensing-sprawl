@@ -10,7 +10,7 @@
 angular.module('cssprawlApp')
   .factory('apiservice', function ($q,$http) {
 
-    var baseUrl = 'http://www.streamreasoning.com/citysensing/api/';
+    var baseUrl = 'http://www.streamreasoning.com/citysensing/api2/';
 
     return {
       getFile : function(url){
