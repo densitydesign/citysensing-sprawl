@@ -130,15 +130,15 @@ angular.module('cssprawlApp')
 
             $timeout(function() {
               var nextDate;
-              if(first){
-                nextDate = d3.time.hour.offset(scope.startDate,23);
-                first = false;
-              }else{
+              // if(first){
+              //   nextDate = d3.time.hour.offset(scope.startDate,23);
+              //   first = false;
+              // }else{
                 nextDate = d3.time.minute.offset(scope.startDate,15);
                 if(nextDate.getTime() == d3.time.day.offset(scope.today,7).getTime()){
                   //nextDate = d3.time.week.offset(d3.time.week.floor(scope.today),-1);
                   nextDate = scope.today;
-                }
+              //  }
                 //ok
               }
               if(scope.startDate.getDay() != nextDate.getDay()){

@@ -104,7 +104,7 @@ angular.module('cssprawlApp')
 //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
 
     //fixed date - to be removed
-    $scope.today = new Date(2015,6,6,21);
+    $scope.today = new Date(2015,6,6);
     $scope.start = $scope.today;
     //var first = d3.time.day.offset(d3.time.day(new Date()),-15);
     $scope.topTopic;
