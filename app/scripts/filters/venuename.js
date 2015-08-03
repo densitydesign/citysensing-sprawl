@@ -10,10 +10,12 @@
  */
 angular.module('cssprawlApp')
   .filter('venueName', function () {
-    return function (input, topojson) {
+    return function (input, pavilions_topo) {
       var output;
-      var venue = topojson.objects.expoarea.geometries
-        .filter(function(d){return input == d.id})
+      var pavillions = topojson.feature(pavilions_topo, pavilions_topo.objects.expoarea);
+      var venue = pavillions.features
+        .filter(function(d){return input == d.properties.id})
+
       output = venue[0].properties.name_panel;
       return output;
     };

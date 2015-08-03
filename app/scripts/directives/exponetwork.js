@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name cssprawlApp.directive:citynetwork
+ * @name cssprawlApp.directive:exponetwork
  * @description
- * # citynetwork
+ * # exponetwork
  */
 angular.module('cssprawlApp')
-  .directive('citynetwork', function ($rootScope,apiservice) {
+  .directive('exponetwork', function ($rootScope,apiservice) {
     return {
       template: '<div class="viz"></div>',
       replace: true,
@@ -31,19 +31,18 @@ angular.module('cssprawlApp')
 
         var force = d3.layout.force()
           //.distance(100)
-          .gravity(0.6)
-          .friction(0.5)
+          .gravity(0.15)
+          .friction(0.8)
           .nodes(mynodes)
           .links(mylinks)
           .linkDistance(function(d){return lineScale(d.value)})
-          .linkStrength(0.5)
+          .linkStrength(1)
           .charge(-2000)
-         //.chargeDistance(400)
           .size([width, height]);
 
 
         var sizeScale = d3.scale.linear().range([10,40]);
-        var lineScale = d3.scale.linear().range([70,20]);
+        var lineScale = d3.scale.linear().range([140,50]);
 
 
         scope.$watch("netData",function(newValue,oldValue){

@@ -1,5 +1,5 @@
 <div class="viz-panel push-left fullheight network">
-  <div citynetwork></div>
+  <div exponetwork></div>
 
 
 </div>
@@ -14,16 +14,16 @@
       IT'S <span class="txt-info date">{{start | date:'longDate' | uppercase}}</span>.
     </p>
     <p>
-    AT <span class="txt-info date">{{start | date:'HH:mm a' | uppercase}}</span>, THIS IS WHAT MILAN <span class="txt-info highlight">IS TWEETING</span> ABOUT.
+    AT <span class="txt-info date">{{start | date:'HH:mm a' | uppercase}}</span>, THIS IS WHAT EXPO2015 <span class="txt-info highlight">IS TWEETING</span> ABOUT.
     </p>
     <p ng-show="topTopic" class="panelFade">
-    THE MOST TWEETED TOPIC IS <span class="txt-info highlight">{{topTopic}}</span>.
+    THE MOST TWEETED TOPIC IS <span class="txt-info highlight">{{topTopic | uppercase}}</span>.
     </p>
-    <p ng-show="topData.users.length" class="panelFade">
+    <!-- <p ng-show="topData.users.length" class="panelFade">
     THESE ARE THE <span class="txt-info highlight">TOP SPEAKERS</span> ON TWITTER:</span>
-    </p>
+    </p> -->
   </div>
-  <div topnet></div>
+  <div topnet ng-show="topData.users.length" class="panelFade"></div>
 
 
 

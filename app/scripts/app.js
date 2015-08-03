@@ -27,9 +27,9 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/network', {
-        templateUrl: 'views/network.html',
-        controller: 'NetworkCtrl'
+      .when('/networkcity', {
+        templateUrl: 'views/networkcity.html',
+        controller: 'NetworkcityCtrl'
       })
       .when('/geocity', {
         templateUrl: 'views/geocity.html',
@@ -48,6 +48,10 @@ angular
             return apiservice.getFile('data/expoarea_topo.json')
           }
         }
+      })
+      .when('/networkexpo', {
+        templateUrl: 'views/networkexpo.html',
+        controller: 'NetworkexpoCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name cssprawlApp.controller:NetworkCtrl
+ * @name cssprawlApp.controller:NetworkexpoCtrl
  * @description
- * # NetworkCtrl
+ * # NetworkexpoCtrl
  * Controller of the cssprawlApp
  */
 angular.module('cssprawlApp')
-  .controller('NetworkCtrl', function ($scope, apiservice,$rootScope,$timeout, $q) {
+  .controller('NetworkexpoCtrl', function ($scope, apiservice,$rootScope,$timeout, $q) {
 
 
     var count = 0;
@@ -20,16 +20,23 @@ angular.module('cssprawlApp')
       var params = {startDate: date.getTime(), endDate: endDate.getTime()};
 
       $q.all([
-        apiservice.getCityNetworkGraph(params),
-        apiservice.getCityNetworkUsers(params)
+        apiservice.getExpoNetworkGraph(params),
+        apiservice.getExpoNetworkUsers(params)
       ]).then(function (data) {
 
         $scope.netData = data[0];
         $scope.topData = data[1];
 
-        $scope.topTopic = $scope.netData.nodes
+        var cluster = $scope.netData.nodes
           .filter(function(d){return d.type == 'cluster'})
-          .sort(function(a,b){return d3.descending(a.value,b.value)})[0].name
+
+        if(cluster.length){
+          cluster.sort(function(a,b){return d3.descending(a.value,b.value)})
+          $scope.topTopic = cluster[0].name;
+        }else {
+          $scope.topTopic = undefined
+        }
+
 
         $scope.start = date;
 
@@ -97,20 +104,11 @@ angular.module('cssprawlApp')
 //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
 
     //fixed date - to be removed
-    $scope.today = new Date(2015,6,6);
+    $scope.today = new Date(2015,6,6,21);
     $scope.start = $scope.today;
     //var first = d3.time.day.offset(d3.time.day(new Date()),-15);
     $scope.topTopic;
     $scope.getNetData($scope.start);
   // $scope.getTopData($scope.start);
-
-
-
-
-
-
-
-
-
 
   });

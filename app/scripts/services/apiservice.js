@@ -202,6 +202,36 @@ angular.module('cssprawlApp')
           });
 
           return deferred.promise;
+        },
+        getExpoNetworkGraph : function(params){
+          var serviceUrl = 'network/expo/graph';
+          var deferred = $q.defer();
+          $http({
+            method: 'GET',
+            url : baseUrl + serviceUrl,
+            params : params
+          }).success(function(data){
+            deferred.resolve(data);
+          }).error(function(){
+            deferred.reject("An error occured while fetching network/expo/graph");
+          });
+
+          return deferred.promise;
+        },
+        getExpoNetworkUsers : function(params){
+          var serviceUrl = 'network/expo/users';
+          var deferred = $q.defer();
+          $http({
+            method: 'GET',
+            url : baseUrl + serviceUrl,
+            params : params
+          }).success(function(data){
+            deferred.resolve(data);
+          }).error(function(){
+            deferred.reject("An error occured while fetching network/expo/users");
+          });
+
+          return deferred.promise;
         }
     };
   });

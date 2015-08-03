@@ -17,7 +17,7 @@
     </p>
     <p ng-show="stats.topSocialVenue" class="panelFade">
       <!-- THE MOST CITED VENUE IS THE<span class="txt-info highlightPavilion">{{stats.topSocialVenue}}</span>. -->
-      THE MOST CITED VENUE IS THE<span class="txt-info highlightPavilion">{{ stats.topSocialVenueId | venueName:pavillions}}</span>.
+      THE MOST CITED VENUE IS THE<span class="txt-info highlightPavilion"> {{ stats.topSocialVenueId | venueName:pavillions | uppercase}}</span>.
     </p>
     <!-- <p>
       AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>

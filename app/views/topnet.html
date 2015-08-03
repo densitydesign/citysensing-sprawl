@@ -1,10 +1,12 @@
 <div class="toplist">
-
+  <p>
+  THESE ARE THE <span class="txt-info highlight">TOP SPEAKERS</span> ON TWITTER:</span>
+  </p>
     <div class="top-user" ng-repeat="u in topUsers">
-      <img ng-src="{{u.avatar}}"/>
-      <span>
+      <img ng-src="{{u.avatar}}" err-src="http://a0.twimg.com/sticky/default_profile_images/default_profile_6_bigger.png"/>
+      <div class="user-name">
         {{u.name}}
-      </span>
+      </div>
 
     </div>
 

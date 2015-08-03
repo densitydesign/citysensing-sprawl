@@ -137,26 +137,32 @@ body {
 text.txts {
   fill:#fff;
   stroke:none;
-  font-size:10px;
-
   font-family:"clear_sansregular";
 }
 
 circle.node{
   stroke:#0EA789;
-  stroke-width:1;
-  stroke-opacity:0.5;
-
 }
 
+.toplist{
+  padding: 15px;
+  width: 100%;
+
+}
 .top-user {
   height:60px;
   margin-top:15px;
+  display: flex;
+  align-items: center;
 }
 .top-user img{
-  height:100%;
+  height:60px;
   width:auto;
   border-radius:100%;
+}
+
+.user-name{
+  padding-left: 15px
 }
 
 /* timelines */
