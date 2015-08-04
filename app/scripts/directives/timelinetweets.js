@@ -34,9 +34,10 @@ angular.module('cssprawlApp')
           }
         })
 
-        scope.$watch('startDate', function(newValue, oldValue){
+        scope.$watch('panelDate', function(newValue, oldValue){
             if(newValue != oldValue && newValue){
-              chartTweet.call(stackedTweet.brushDate(newValue))
+              var range = d3.time.minute.offset(newValue,scope.timeoffset)
+              chartTweet.call(stackedTweet.brushDate(range))
             }
         })
 

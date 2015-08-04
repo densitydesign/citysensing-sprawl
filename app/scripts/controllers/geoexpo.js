@@ -8,15 +8,30 @@
  * Controller of the cssprawlApp
  */
 angular.module('cssprawlApp')
-  .controller('GeoexpoCtrl', function ($scope, apiservice, pavillions) {
+  .controller('GeoexpoCtrl', function ($scope,$location, apiservice, pavillions) {
 
       $scope.pavillions = pavillions;
 
-      //$scope.today = d3.time.day.floor(new Date());
-      //$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
+      $scope.today;
+      $scope.timeoffset = 15;
 
+      var formatDateParam = d3.time.format('%d-%m-%Y')
+      var params = $location.search()
+      if(params.startDate){
+        $scope.today = formatDateParam.parse(params.startDate)
+        //console.log(formatDateParam.parse(params.startDate))
+
+        var test = d3.time.monday.offset(d3.time.monday.floor(new Date()),-1)
+
+      }else{
+        $scope.today = d3.time.monday.offset(d3.time.monday.floor(new Date()),-1)
+      }
+
+      if(params.timeoffset){
+        $scope.timeoffset = parseInt(params.timeoffset);
+      }
       //fixed date - to be removed
-      $scope.today = new Date(2015,6,6);
+      //$scope.today = new Date(2015,6,6);
       $scope.startDate = $scope.today;
       $scope.panelDate = $scope.today;
       $scope.endDate;
@@ -28,7 +43,7 @@ angular.module('cssprawlApp')
       $scope.stats;
 
       $scope.getSocialData = function(date) {
-        var endDate = d3.time.minute.offset(date,15);
+        var endDate = d3.time.minute.offset(date,$scope.timeoffset);
         var params = {startDate:date.getTime(),endDate: endDate.getTime()};
 
         apiservice.getGeoExpoSocialActivityPosts(params).then(
@@ -43,7 +58,7 @@ angular.module('cssprawlApp')
       }
 
       $scope.getPavillionsData = function(date) {
-        var endDate = d3.time.minute.offset(date,15);
+        var endDate = d3.time.minute.offset(date,$scope.timeoffset);
         //var params = {startDate:date.getTime()};
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
@@ -90,7 +105,7 @@ angular.module('cssprawlApp')
       }
 
       $scope.getStats = function(date) {
-        var endDate = d3.time.minute.offset(date,15);
+        var endDate = d3.time.minute.offset(date,$scope.timeoffset);
         var params = {startDate:date.getTime(), endDate:endDate.getTime()};
 
         apiservice.getGeoExpoGeneralStats(params).then(

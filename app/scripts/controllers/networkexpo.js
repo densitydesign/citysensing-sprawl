@@ -8,7 +8,7 @@
  * Controller of the cssprawlApp
  */
 angular.module('cssprawlApp')
-  .controller('NetworkexpoCtrl', function ($scope, apiservice,$rootScope,$timeout, $q) {
+  .controller('NetworkexpoCtrl', function ($scope, apiservice,$rootScope,$timeout, $q, $location) {
 
 
     var count = 0;
@@ -41,10 +41,14 @@ angular.module('cssprawlApp')
         $scope.start = date;
 
         $timeout(function () {
-          if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
-            endDate = scope.today;
+          // if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+          //   endDate = scope.today;
+          // }
+          //$scope.start = endDate;
+          $scope.start = d3.time.minute.offset($scope.start,$scope.timeoffset)
+          if($scope.start.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+            $scope.start = $scope.today;
           }
-          $scope.start = endDate;
           $scope.getNetData($scope.start)
         }, 2000);
 
@@ -52,12 +56,15 @@ angular.module('cssprawlApp')
         .catch(function(error) {
           console.warn(error)
           $scope.topTopic = undefined;
-          var endDate = d3.time.minute.offset(date, 15);
           $timeout(function () {
-            if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
-              endDate = scope.today;
-            }
-            $scope.start = endDate;
+          // if(endDate.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+          //   endDate = scope.today;
+          // }
+          //$scope.start = endDate;
+          $scope.start = d3.time.minute.offset($scope.start,$scope.timeoffset)
+          if($scope.start.getTime() == d3.time.day.offset($scope.today,7).getTime()){
+            $scope.start = $scope.today;
+          }
             $scope.getNetData($scope.start)
           }, 2000);
 
@@ -100,11 +107,26 @@ angular.module('cssprawlApp')
 
 */
 
-//$scope.today = d3.time.day.floor(new Date());
-//$scope.startDate = d3.time.week.offset(d3.time.week.floor($scope.today),-1);
+    $scope.today;
+    $scope.timeoffset = 15;
 
+    var formatDateParam = d3.time.format('%d-%m-%Y')
+    var params = $location.search()
+    if(params.startDate){
+      $scope.today = formatDateParam.parse(params.startDate)
+      //console.log(formatDateParam.parse(params.startDate))
+
+      var test = d3.time.monday.offset(d3.time.monday.floor(new Date()),-1)
+
+    }else{
+      $scope.today = d3.time.monday.offset(d3.time.monday.floor(new Date()),-1)
+    }
+
+    if(params.timeoffset){
+      $scope.timeoffset = parseInt(params.timeoffset);
+    }
     //fixed date - to be removed
-    $scope.today = new Date(2015,6,6);
+    //$scope.today = new Date(2015,6,6);
     $scope.start = $scope.today;
     //var first = d3.time.day.offset(d3.time.day(new Date()),-15);
     $scope.topTopic;

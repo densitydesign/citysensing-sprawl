@@ -20,8 +20,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        redirectTo: '/geocity'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -54,6 +53,6 @@ angular
         controller: 'NetworkexpoCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/geocity'
       });
   });

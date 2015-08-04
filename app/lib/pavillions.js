@@ -44,7 +44,7 @@
           .duration(1000)
           .attr("fill-opacity", function(d){return scaleOpacity(d.properties.value)})
           .transition()
-          .duration(1000)
+          .duration(500)
           .delay(function(d,i){
             return i*50
           })
@@ -73,12 +73,12 @@
         var pavillionName = chart.selectAll(".pavillionName").data(data.features, function(d){return d.properties.id})
 
         pavillionName
-          .filter(function(d){return d.properties.value})
+          .filter(function(d){return scaleOpacity(d.properties.value) > 0.6 })
           .text(function(d){return d.properties.name})
           .transition()
           .duration(100)
           .attr("fill-opacity", 0)
-          .attr("y", function(d){console.log(d);return projection(d3.geo.bounds(d)[1])[1]+10})
+          .attr("y", function(d){return projection(d3.geo.bounds(d)[1])[1]+10})
           .transition()
           .duration(200)
           .attr("fill-opacity", 0.9)
@@ -104,7 +104,8 @@
           .attr("font-family", "'clear_sansregular', sans-serif")
           .attr("font-size", "1.3em")
           .attr("fill-opacity", 0)
-          .filter(function(d){return d.properties.value})
+          //.filter(function(d){return d.properties.value})
+          .filter(function(d){return scaleOpacity(d.properties.value) > 0.6 })
           .text(function(d){return d.properties.name})
           .transition()
           .duration(200)

@@ -31,12 +31,12 @@ angular.module('cssprawlApp')
 
         var force = d3.layout.force()
           //.distance(100)
-          .gravity(0.15)
-          .friction(0.8)
+          .gravity(0.4)
+          .friction(0.5)
           .nodes(mynodes)
           .links(mylinks)
           .linkDistance(function(d){return lineScale(d.value)})
-          .linkStrength(1)
+          .linkStrength(0.5)
           .charge(-2000)
           .size([width, height]);
 
