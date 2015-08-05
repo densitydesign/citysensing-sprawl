@@ -18,14 +18,14 @@
     <p ng-show="stats.topSocialNil" class="panelFade">
       MOST OF THEM ARE FROM <span class="txt-info highlight">{{stats.topSocialNil}}</span> DISTRICT.
     </p>
-    <!-- <p ng-show="stats.topAnomalyNil">
-      AT <span class="txt-info date">{{startDate | date:'HH:mm a' | uppercase}}</span>
+    <p ng-show="stats.topAnomalyNil" class="panelFade">
+      AT <span class="txt-info date">{{startDate | date:'hh:mm a' | uppercase}}</span>
       THERE IS A STRANGE
-      <span class="txt-info highlightCalls">PHONE ACTIVITY</span> IN <span class="txt-info highlightCalls">{{stats.topAnomalyNil}}</span>
-    </p> -->
+      <span class="txt-info highlightCalls">PHONE ACTIVITY</span> IN <span class="txt-info highlightCalls">{{stats.topAnomalyNil}}</span> DISTRICT.
+    </p>
   </div>
   <div class="panel-timelines">
-    <div ng-show="socialTimeline.timeline.length" id="timeline-tweets" timelinetweets></div>
-    <!-- <div ng-show="callsTimeline.timeline.length" id="timeline-calls" timelinecalls></div> -->
+    <div ng-show="socialTimeline.timeline.length" class="panelFade" id="timeline-tweets" timelinetweets></div>
+    <div ng-show="callsTimeline.timeline.length" class="panelFade" id="timeline-calls" timelinecalls></div>
   </div>
 </div>

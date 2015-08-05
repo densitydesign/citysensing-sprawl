@@ -145,8 +145,7 @@ angular.module('cssprawlApp')
               if(nextDate.getDate() > scope.startDate.getDate()){
                 first = true;
                   scope.getTimeSocialData(nextDate)
-                  //scope.getTimeSocialData(nextDate)
-                  //scope.getTimeCallsData(nextDate)
+                  scope.getTimeCallsData(nextDate)
               }
               scope.startDate = nextDate;
               scope.getSocialData(scope.startDate);

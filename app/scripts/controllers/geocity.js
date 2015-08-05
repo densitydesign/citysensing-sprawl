@@ -136,7 +136,7 @@ angular.module('cssprawlApp')
       }
 
       $scope.getTimeSocialData($scope.startDate)
-      //$scope.getTimeCallsData($scope.startDate)
+      $scope.getTimeCallsData($scope.startDate)
       $scope.getSocialData($scope.startDate)
       $scope.getAnomalyData($scope.startDate)
       $scope.getStats($scope.startDate)

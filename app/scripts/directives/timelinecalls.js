@@ -32,9 +32,10 @@ angular.module('cssprawlApp')
           }
         })
 
-        scope.$watch('startDate', function(newValue, oldValue){
+        scope.$watch('panelDate', function(newValue, oldValue){
             if(newValue != oldValue && newValue){
-              chartCalls.call(stackedCalls.brushDate(newValue))
+              var range = d3.time.minute.offset(newValue,scope.timeoffset)
+              chartCalls.call(stackedCalls.brushDate(range))
             }
         })
 
