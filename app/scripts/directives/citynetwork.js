@@ -181,7 +181,7 @@ angular.module('cssprawlApp')
             .attr("dx", 0)
             .attr("dy", ".35em")
             .attr("class","txts")
-            .attr("font-size", "10px")
+            .attr("font-size", "14px")
             .attr("text-anchor","middle")
             .text(function(d) {
               if(d.type == "cluster"){d.name = d.name.toUpperCase()};
@@ -203,7 +203,7 @@ angular.module('cssprawlApp')
             .filter(function(d){
               return d.type == "cluster";
             })
-            .attr("font-size", "12px")
+            .attr("font-size", "16px")
 
           txts
             .each(function(d){
